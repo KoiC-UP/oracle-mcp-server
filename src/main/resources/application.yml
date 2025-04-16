@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: oracle-mcp-server
+  ai:
+    mcp:
+      server:
+        enabled: true
+
+oracle:
+  connection:
+    string: jdbc:oracle:thin:@{ip}:{port}:{database}
+    username: {username}
+    password: {password}
