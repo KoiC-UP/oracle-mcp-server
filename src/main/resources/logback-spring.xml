@@ -1,0 +1,33 @@
+<configuration>
+
+    <!-- 控制台输出，使用与Spring Boot默认相似的格式 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %logger{36} - %msg%n</pattern>
+            <!-- 这里的pattern与Spring Boot的默认格式非常接近，但可能不完全相同，
+                 因为Spring Boot的确切默认格式可能会根据版本和配置有所不同。
+                 你可以根据需要调整pattern以匹配你的Spring Boot版本的默认输出。 -->
+        </encoder>
+    </appender>
+
+    <!-- 文件输出，每天滚动 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/app.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/oracle-mcp-server.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <!-- 文件输出的格式可以根据需要自定义 -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <!-- 将控制台和文件appender添加到root logger -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+    </root>
+
+</configuration>

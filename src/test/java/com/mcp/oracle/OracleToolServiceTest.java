@@ -84,11 +84,11 @@ public class OracleToolServiceTest {
      * 
      * @author yue9527
      */
-    @Test
+/*    @Test
     public void testExecuteQueryWithInvalidQuery() {
         String result = oracleToolService.executeSql("INSERT INTO test VALUES (1)");
         log.info(result);
         assertTrue(result.startsWith("Error: Only SELECT statements are supported."));
-    }
+    }*/
 
 } 

@@ -1,6 +1,6 @@
 # Oracle MCP Server
 
-A Model Context Protocol (MCP) server implementation for Oracle database operations, built on top of `spring-ai-mcp-server-webmvc-spring-boot-starter`. This service provides a set of tools for interacting with Oracle databases through MCP, utilizing Server-Sent Events (SSE) for real-time communication.
+A Model Context Protocol (MCP) server implementation for Oracle database operations, built on top of `spring-ai-starter-mcp-server-webflux`. This service provides a set of tools for interacting with Oracle databases through MCP, utilizing Server-Sent Events (SSE) for real-time communication.
 
 ## Features
 
@@ -9,13 +9,16 @@ A Model Context Protocol (MCP) server implementation for Oracle database operati
 - Execute SQL statements (SELECT, INSERT, UPDATE, DELETE)
 - Secure database connection management
 - Real-time communication via SSE
-- Built on spring-ai-mcp-server-webmvc-spring-boot-starter
+- ~~Built on spring-ai-mcp-server-webmvc-spring-boot-starter~~
+- Built on spring-ai-starter-mcp-server-webflux
 
 ## Technology Stack
 
 ### Core Dependencies
-- Spring Boot 3.2.0
-- spring-ai-mcp-server-webmvc-spring-boot-starter
+- ~~Spring Boot 3.2.0~~
+- Spring Boot 3.4.5
+- ~~spring-ai-mcp-server-webmvc-spring-boot-starter~~
+- spring-ai-starter-mcp-server-webflux
 - Oracle JDBC Driver
 - Model Context Protocol (MCP) Framework
 - Lombok
@@ -43,7 +46,7 @@ Create or modify `application.properties` or `application.yml` with the followin
 
 ```yaml
 oracle:
-  connectionString: jdbc:oracle:thin:@//your-oracle-host:1521/your-service-name
+  url: jdbc:oracle:thin:@your-oracle-host:1521/your-service-name
   username: your-username
   password: your-password
 ```

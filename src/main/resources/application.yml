@@ -7,7 +7,12 @@ spring:
   ai:
     mcp:
       server:
-        enabled: true
+        name: oracle-mcp-server
+        version: 1.0.0
+        type: ASYNC
+
+logging:
+  config: classpath:logback-spring.xml
 
 oracle:
   connection:

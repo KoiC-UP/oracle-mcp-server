@@ -10,14 +10,14 @@ import lombok.Data;
  * @author yue9527
  */
 @Configuration
-@ConfigurationProperties(prefix = "oracle")
+@ConfigurationProperties(prefix = "oracle.connection")
 @Data
 public class OracleToolConfig {
     
     /**
      * Oracle database connection string
      */
-    private String connectionString;
+    private String url;
     
     /**
      * Oracle database username
@@ -28,11 +28,11 @@ public class OracleToolConfig {
      * Oracle database password
      */
     private String password;
-    
-    public String getConnectionString() {
-        return connectionString;
+
+    public String getUrl() {
+        return url;
     }
-    
+
     public String getUsername() {
         return username;
     }

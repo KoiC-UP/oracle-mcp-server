@@ -4,6 +4,6 @@ spring:
 
 oracle:
   connection:
-    string: jdbc:oracle:thin:@{ip}:{port}:{database}
+    url: jdbc:oracle:thin:@{ip}:{port}/{database}
     username: {username}
     password: {password}

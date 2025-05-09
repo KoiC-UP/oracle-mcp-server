@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.ai.tool.annotation.ToolParam;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,7 @@ import oracle.jdbc.pool.OracleDataSource;
 public class OracleToolService {
 
     private final OracleToolConfig oracleToolConfig;
+    private final static Logger logger = LoggerFactory.getLogger(OracleToolService.class);
 
     /**
      * Constructor for OracleService
@@ -45,7 +48,7 @@ public class OracleToolService {
      */
     private OracleConnection getConnection() throws Exception {
         OracleDataSource ds = new OracleDataSource();
-        ds.setURL(oracleToolConfig.getConnectionString());
+        ds.setURL(oracleToolConfig.getUrl());
         ds.setUser(oracleToolConfig.getUsername());
         ds.setPassword(oracleToolConfig.getPassword());
         return (OracleConnection) ds.getConnection();
@@ -72,6 +75,7 @@ public class OracleToolService {
             return tables.stream()
                     .collect(Collectors.joining("\n"));
         } catch (Exception e) {
+            logger.error(e.getMessage());
             return "Error: " + e.getMessage();
         }
     }
@@ -124,7 +128,7 @@ public class OracleToolService {
 
             return result.toString();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             return "Error: " + e.getMessage();
         }
     }
@@ -176,10 +180,16 @@ public class OracleToolService {
                         Statement stmt = conn.createStatement()) {
 
                     int affectedRows = stmt.executeUpdate(sql);
-                    return "Success: " + affectedRows + " rows affected";
+                    String resultMsg = "Success: " + affectedRows + " rows affected";
+
+                    logger.info("execute_sql:{},result_msg:{}",sql, resultMsg);
+
+                    return resultMsg;
                 }
             }
         } catch (Exception e) {
+            logger.error(e.getMessage());
+            logger.error("SQL:<{}> Caused Error", sql);
             return "Error: " + e.getMessage();
         }
     }
